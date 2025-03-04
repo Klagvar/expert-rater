@@ -1,0 +1,10 @@
+h1 Editing value
+
+== render "form", value: @value
+
+br
+
+div
+  => link_to "Show this value", @value
+  '|
+  =< link_to "Back to values", values_path

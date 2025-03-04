@@ -1,10 +1,25 @@
 p style="color: green" = notice
 
-== render @user
+table.table.table-dark.table-striped.mt-4
+  thead
+    tr
+      th Поле
+      th Значение
+  tbody
+    tr
+      td ID
+      td = @user.id
+    tr
+      td Name
+      td = @user.name
+    tr
+      td Email
+      td = @user.email
+    tr
+      td Created At
+      td = l(@user.created_at, format: :long)
 
-div
-  => link_to "Edit this user", edit_user_path(@user)
-  '|
-  =< link_to "Back to users", users_path
-
-  = button_to "Destroy this user", @user, method: :delete
+.mt-4
+  => link_to "Edit this user", edit_user_path(@user), class: 'btn btn-secondary'
+  = link_to "Back to users", users_path, class: 'btn btn-outline-light'
+  = button_to "Destroy this user", @user, method: :delete, class: 'btn btn-danger mt-2'

@@ -1,0 +1,22 @@
+= form_with(model: value) do |form|
+  - if value.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(value.errors.count, "error")} prohibited this value from being saved:"
+      ul
+        - value.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :user_id, style: "display: block"
+    = form.text_field :user_id
+
+  div
+    = form.label :image_id, style: "display: block"
+    = form.text_field :image_id
+
+  div
+    = form.label :value, style: "display: block"
+    = form.number_field :value
+
+  div
+    = form.submit

@@ -1,11 +1,25 @@
 p style="color: green" = notice
 
-h1 Users
+h1.mb-4 Users
 
-#users
-  - @users.each do |user|
-    == render user
-    p
-      = link_to "Show this user", user
+table.table.table-dark.table-striped.table-hover
+  thead
+    tr
+      th ID
+      th Name
+      th Email
+      th Actions
 
-= link_to "New user", new_user_path
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.id
+        td = user.name
+        td = user.email
+        td
+          = link_to "Show", user, class: 'btn btn-sm btn-info'
+          = link_to "Edit", edit_user_path(user), class: 'btn btn-sm btn-warning mx-2'
+          = link_to "Delete", user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+
+.mt-4
+  = link_to "New User", new_user_path, class: 'btn btn-primary'

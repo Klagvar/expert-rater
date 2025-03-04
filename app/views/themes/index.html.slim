@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Themes
+
+#themes
+  - @themes.each do |theme|
+    == render theme
+    p
+      = link_to "Show this theme", theme
+
+= link_to "New theme", new_theme_path

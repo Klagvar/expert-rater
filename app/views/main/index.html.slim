@@ -4,19 +4,3 @@ ul
   li = link_to 'Help', main_help_path
   li = link_to 'About', main_about_path
   li = link_to 'Ruby on Rails Website', 'http://rubyonrails.org'
-
-/ Таблица пользователей
-table.table.table-dark.table-striped.table-hover.mt-4
-  thead
-    tr
-      th ID
-      th Name
-      th Email
-      th Created At
-  tbody
-    - @users.each do |user|
-      tr
-        td = user.id
-        td = user.name
-        td = user.email
-        td = l(user.created_at, format: :short)

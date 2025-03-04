@@ -1,10 +1,10 @@
-h1 Editing user
-
-== render "form", user: @user
-
-br
-
-div
-  => link_to "Show this user", @user
-  '|
-  =< link_to "Back to users", users_path
+.container.py-5
+  h1.mb-4.text-center Editing User
+  == render "form", user: @user
+  .mt-4.text-center
+    = link_to @user, class: 'btn btn-info me-2' do
+      i.fas.fa-eye
+      |  Show User
+    = link_to users_path, class: 'btn btn-outline-secondary' do
+      i.fas.fa-arrow-left
+      |  Back to users

@@ -1,0 +1,25 @@
+p style="color: green" = notice
+
+h1 Listing images
+
+table.table.table-dark.table-striped.table-hover.mt-4
+  thead
+    tr
+      th Name
+      th File
+      th Theme
+      th Ave value
+      th[colspan="3"]
+
+  tbody
+    - @images.each do |image|
+      tr
+        td = image.name
+        td = image.file
+        td = image.theme.name
+        td = image.ave_value
+        td = link_to 'Show', image
+        td = link_to 'Edit', edit_image_path(image)
+        td = link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'New Image', new_image_path, class: 'btn btn-primary mt-4'

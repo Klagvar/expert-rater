@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @value
+
+div
+  => link_to "Edit this value", edit_value_path(@value)
+  '|
+  =< link_to "Back to values", values_path
+
+  = button_to "Destroy this value", @value, method: :delete

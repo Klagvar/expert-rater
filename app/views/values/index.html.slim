@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Values
+
+#values
+  - @values.each do |value|
+    == render value
+    p
+      = link_to "Show this value", value
+
+= link_to "New value", new_value_path

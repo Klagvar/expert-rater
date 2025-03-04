@@ -1,18 +1,26 @@
-= form_with(model: user) do |form|
+= form_with(model: user, html: { class: 'user-form' }) do |form|
   - if user.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(user.errors.count, "error")} prohibited this user from being saved:"
-      ul
+    .alert.alert-danger.mb-4
+      h4.alert-heading = "#{pluralize(user.errors.count, "error")} prohibited this user from being saved:"
+      ul.mb-0
         - user.errors.each do |error|
           li = error.full_message
 
-  div
-    = form.label :name, style: "display: block"
-    = form.text_field :name
+  .form-group.mb-3
+    = form.label :name, class: 'form-label'
+    = form.text_field :name, class: 'form-control bg-dark text-light border-secondary'
 
-  div
-    = form.label :email, style: "display: block"
-    = form.text_field :email
+  .form-group.mb-3
+    = form.label :email, class: 'form-label'
+    = form.email_field :email, class: 'form-control bg-dark text-light border-secondary'
 
-  div
-    = form.submit
+  .form-group.mb-3
+    = form.label :password, class: 'form-label'
+    = form.password_field :password, class: 'form-control bg-dark text-light border-secondary'
+
+  .form-group.mb-4
+    = form.label :password_confirmation, class: 'form-label'
+    = form.password_field :password_confirmation, class: 'form-control bg-dark text-light border-secondary'
+
+  .actions
+    = form.submit class: 'btn btn-primary w-100'

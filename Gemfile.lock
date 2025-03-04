@@ -78,6 +78,7 @@ GEM
     autoprefixer-rails (10.4.19.0)
       execjs (~> 2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
     benchmark (0.4.0)
     bigdecimal (3.1.9)
@@ -392,6 +393,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  bcrypt
   bootsnap
   bootstrap
   brakeman
