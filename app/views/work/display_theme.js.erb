@@ -1,0 +1,13 @@
+// Обновляем все элементы интерфейса
+$('.up-theme').text('<%= @image_data[:theme] %>');
+$('.up').text('<%= @image_data[:name] %>');
+$('.scalable-image').attr('src', '<%= asset_path "pictures/#{@image_data[:file]}" %>');
+
+// Принудительно обновляем ID во ВСЕХ ссылках навигации
+$('.img-left-side').attr('href', '<%= previous_image_path(image_id: @image_data[:id]) %>');
+$('.img-right-side').attr('href', '<%= next_image_path(image_id: @image_data[:id]) %>');
+
+// Сброс кэша браузера для изображения (опционально)
+$('.scalable-image').css('transform', 'scale(0.99)').delay(50).queue(function() {
+    $(this).css('transform', 'scale(1)').dequeue();
+});
