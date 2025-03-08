@@ -1,4 +1,8 @@
+=begin
 Rails.application.routes.draw do
+  get "work/index"
+  get "work/choose_theme"
+  get "work/display_theme"
   resources :values
   resources :themes
   resources :images
@@ -18,5 +22,28 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "main#index"
+  #root "main#index"
+
+  root "work#index" # Временный корневой путь
+
+  get "work", to: "work#index"
+  get "choose_theme", to: "work#choose_theme"
+  post "display_theme", to: "work#display_theme"
+end
+=end
+Rails.application.routes.draw do
+  root "work#index"
+
+  # WorkController
+  get "work", to: "work#index"
+  get "choose_theme", to: "work#choose_theme"
+  post "display_theme", to: "work#display_theme"
+  get "next_image", to: "work#next_image"
+  get "previous_image", to: "work#previous_image"
+
+  # Остальные ресурсы
+  resources :values, :themes, :images, :users
+
+  # MainController
+  get "main/index", "main/help", "main/contacts", "main/about"
 end

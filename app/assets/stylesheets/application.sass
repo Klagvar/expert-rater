@@ -3,70 +3,75 @@
 @import "header"
 @import "footer"
 
+// Base
 body
-  background-color: #1a1a1a
-  color: #ffffff
+  background: #1a1a1a
+  color: #fff
   min-height: 100vh
   display: flex
   flex-direction: column
 
 .container
-  width: 100%
   max-width: 1200px
-  margin: 0 auto
   padding: 0 15px
 
-main
-  flex: 1
-  padding: 40px 0
+// Image display
+.card
+  max-width: 100%
+  margin: 0 auto
+  background: #000
 
-a
-  color: #58a6ff
-  &:hover
-    color: #79b8ff
+.image-container
+  display: flex
+  justify-content: center
+  align-items: center
+  max-width: 100%
 
-// Тёмная таблица
-.table-dark
-  background: #1a1a1a
-  color: #fff
-
-  th
-    background: #2d2d2d
-    border-color: #404040
-
-  td
-    border-color: #404040
-
-  tr:hover
-    background: #333
-
-
-.img-custom
-  max-width: 400px
+.scalable-image
+  max-height: 65vh  // Увеличили до 85vh, чтобы изображение стало чуть больше
+  max-width: 100%
+  width: auto
   height: auto
-  border: 2px solid #333
-  border-radius: 8px
+  object-fit: contain
+  transform-origin: center
+  transition: transform 0.3s ease
 
+// Кнопки
+.img-left-side, .img-right-side
+  color: #fff
+  padding: 0.5rem
+  &:hover
+    color: #58a6ff
+
+// Адаптивность
+@media (max-width: 992px)
+  .scalable-image
+    max-height: 65vh
+
+@media (max-width: 768px)
+  .scalable-image
+    max-height: 55vh
+
+@media (max-width: 576px)
+  .scalable-image
+    max-height: 45vh
+
+// Modal
+.modal-content
+  border: 1px solid #58a6ff
+  .modal-body
+    padding: 1.5rem
+
+// Utilities
 .user-form
   max-width: 600px
   margin: 0 auto
-  padding: 2rem
   background: #2d2d2d
+
+.table-dark
+  th
+    background: #2d2d2d
+
+.img-custom
+  max-width: 400px
   border-radius: 8px
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25)
-
-.form-control
-  &:focus
-    background-color: #333
-    border-color: #58a6ff
-    box-shadow: 0 0 0 0.25rem rgba(88, 166, 255, 0.25)
-    color: #fff
-
-.alert-danger
-  background-color: #4a1a1a
-  border-color: #5c2c2c
-  color: #ff7a7a
-
-.form-label
-  color: #ccc
-  margin-bottom: 0.5rem

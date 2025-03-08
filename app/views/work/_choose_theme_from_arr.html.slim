@@ -1,0 +1,7 @@
+= form_tag(display_theme_path, method: :post, remote: true, id: 'theme-select-form') do
+  .form-group.mb-3
+    = select_tag :theme,
+            options_for_select(@themes, params[:theme]),
+            class: 'form-control bg-dark text-light',
+            prompt: 'Выберите тему',
+            onchange: "this.form.requestSubmit()"

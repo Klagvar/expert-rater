@@ -1,0 +1,5 @@
+// Открываем модальное окно
+$('#themeModal').modal('show');
+
+// Вставляем форму выбора темы
+$('#themeModal .modal-body').html("<%= j render 'choose_theme_from_arr' %>");
