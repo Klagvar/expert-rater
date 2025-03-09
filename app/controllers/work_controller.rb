@@ -29,38 +29,24 @@ class WorkController < ApplicationController
     end
   end
 
-  def next_image
-    @image = Image.find(params[:image_id])
-    @next_image = @image.next_in_theme
-    respond_to :js
-  end
-
-  def previous_image
-    @image = Image.find(params[:image_id])
-    @previous_image = @image.previous_in_theme
-    respond_to :js
-  end
-
-
-
   def process_theme(theme_name)
     return default_data if theme_name.blank?
 
-    # Явная проверка порядка тем через сортировку
     theme = Theme.order(:id).find_by(name: theme_name.strip)
     return default_data unless theme
 
-    # Жёсткая проверка привязки изображений к теме
-    image = theme.images.order(:id).first
-    return default_data unless image
-
+    # Возвращаем полные данные для API
     {
-      id: image.id,
-      file: image.file,
-      name: image.name,
+      theme_id: theme.id,
+      index: 0,
+      images_arr_size: theme.images.count,
+      id: theme.images.first&.id || 0,
+      file: theme.images.first&.file || 'sponge_bob_1.jpg',
+      name: theme.images.first&.name || 'Спанги бобе додеп',
       theme: theme.name
     }
   end
+
   private
 
   def default_data

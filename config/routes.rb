@@ -38,8 +38,12 @@ Rails.application.routes.draw do
   get "work", to: "work#index"
   get "choose_theme", to: "work#choose_theme"
   post "display_theme", to: "work#display_theme"
-  get "next_image", to: "work#next_image"
-  get "previous_image", to: "work#previous_image"
+
+  # API Routes
+  namespace :api do
+    get "next_image", to: "api#next_image"
+    get "prev_image", to: "api#prev_image"
+  end
 
   # Остальные ресурсы
   resources :values, :themes, :images, :users

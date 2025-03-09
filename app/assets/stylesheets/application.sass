@@ -17,24 +17,24 @@ body
 
 // Image display
 .card
-  max-width: 100%
-  margin: 0 auto
   background: #000
+  display: inline-flex          // Карточка подстраивается под ширину содержимого
+  flex-direction: column
+  align-items: center
+  margin: 0 auto
 
 .image-container
   display: flex
   justify-content: center
   align-items: center
-  max-width: 100%
 
 .scalable-image
-  max-height: 65vh  // Увеличили до 85vh, чтобы изображение стало чуть больше
-  max-width: 100%
-  width: auto
-  height: auto
-  object-fit: contain
-  transform-origin: center
-  transition: transform 0.3s ease
+  max-height: 65vh             // Ограничение по высоте
+  max-width: 100vw             // Ограничение по ширине
+  width: auto                  // Ширина изображения определяется автоматически
+  height: auto                 // Высота подстраивается пропорционально
+  object-fit: contain          // Сохраняем пропорции изображения
+  transition: transform 0.3s ease  // Плавный переход при смене
 
 // Кнопки
 .img-left-side, .img-right-side

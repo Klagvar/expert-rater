@@ -5,15 +5,17 @@
 
   .container.my-4
     .d-flex.justify-content-center
-      .card.bg-dark.text-light
+      .card.bg-dark.text-light(
+        data-theme-id=@image_data[:theme_id]
+        data-current-index=@image_data[:index]
+        data-total-images=@image_data[:images_arr_size]
+      )
         .card-header.text-center.py-3
           h2.up-theme.mb-0 = @image_data[:theme]
         .card-body.p-0
           .d-flex.align-items-center
             .me-3
-              = link_to previous_image_path(image_id: @image_data[:id]),
-                      class: 'nav-link img-left-side',
-                      remote: true do
+              button.nav-link.img-left-side[data-action="prev"]
                 i.fas.fa-chevron-left.fa-2x
 
             .image-container
@@ -23,9 +25,7 @@
                 = image_tag 'pictures/sponge_bob_1.jpg', class: 'scalable-image'
 
             .ms-3
-              = link_to next_image_path(image_id: @image_data[:id]),
-                      class: 'nav-link img-right-side',
-                      remote: true do
+              button.nav-link.img-right-side[data-action="next"]
                 i.fas.fa-chevron-right.fa-2x
 
         .card-footer.text-center.mt-3

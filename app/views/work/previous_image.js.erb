@@ -1,9 +1,0 @@
-<% if @previous_image %>
-document.querySelector('.scalable-image').src = '<%= asset_path "pictures/#{@previous_image.file}" %>';
-$('.up').text('<%= @previous_image.name %>');
-$('.nav-link').attr('href', function() {
-    return this.href.replace(/image_id=\d+/, 'image_id=<%= @previous_image.id %>');
-});
-<% else %>
-alert('Это первое изображение в теме');
-<% end %>

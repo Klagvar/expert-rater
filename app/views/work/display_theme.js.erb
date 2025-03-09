@@ -3,9 +3,14 @@ $('.up-theme').text('<%= @image_data[:theme] %>');
 $('.up').text('<%= @image_data[:name] %>');
 $('.scalable-image').attr('src', '<%= asset_path "pictures/#{@image_data[:file]}" %>');
 
-// Принудительно обновляем ID во ВСЕХ ссылках навигации
-$('.img-left-side').attr('href', '<%= previous_image_path(image_id: @image_data[:id]) %>');
-$('.img-right-side').attr('href', '<%= next_image_path(image_id: @image_data[:id]) %>');
+// Обновляем данные для API-навигации
+$('.card')
+  .data('theme-id', '<%= @image_data[:theme_id] %>')
+  .data('current-index', '<%= @image_data[:index] %>')
+  .data('total-images', '<%= @image_data[:images_arr_size] %>');
+
+// Принудительно обновляем ширину карточки
+$('.card').css('width', 'auto');
 
 // Сброс кэша браузера для изображения (опционально)
 $('.scalable-image').css('transform', 'scale(0.99)').delay(50).queue(function() {
