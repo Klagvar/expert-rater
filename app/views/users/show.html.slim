@@ -1,25 +1,27 @@
-p style="color: green" = notice
-
-table.table.table-dark.table-striped.mt-4
-  thead
-    tr
-      th Поле
-      th Значение
-  tbody
-    tr
-      td ID
-      td = @user.id
-    tr
-      td Name
-      td = @user.name
-    tr
-      td Email
-      td = @user.email
-    tr
-      td Created At
-      td = l(@user.created_at, format: :long)
-
-.mt-4
-  => link_to "Edit this user", edit_user_path(@user), class: 'btn btn-secondary'
-  = link_to "Back to users", users_path, class: 'btn btn-outline-light'
-  = button_to "Destroy this user", @user, method: :delete, class: 'btn btn-danger mt-2'
+.container.py-5
+  h1.mb-4.text-center Профиль пользователя
+  .text-center.mb-4
+    = gravatar_for(@user)
+  p.text-success.text-center = notice
+  table.table.table-dark.table-striped.mt-4
+    thead
+      tr
+        th Поле
+        th Значение
+    tbody
+      tr
+        td ID
+        td = @user.id
+      tr
+        td Имя
+        td = @user.name
+      tr
+        td Email
+        td = @user.email
+      tr
+        td Дата создания
+        td = l(@user.created_at, format: :long)
+  .mt-4.text-center
+    = link_to "Редактировать", edit_user_path(@user), class: 'btn btn-secondary'
+    = link_to "Назад к пользователям", users_path, class: 'btn btn-outline-light'
+    = button_to "Удалить пользователя", @user, method: :delete, class: 'btn btn-danger mt-2'

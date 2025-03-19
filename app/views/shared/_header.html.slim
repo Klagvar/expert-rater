@@ -9,4 +9,10 @@ header
         li = link_to 'Images', images_path
         li = link_to 'Themes', themes_path
         li = link_to 'Rails Docs', 'https://rubyonrails.org', target: '_blank'
-
+        - if signed_in?
+          li.user-info
+            = link_to profile_path, class: 'user-link' do
+              = gravatar_for(current_user, size: 43)
+        - else
+          li = link_to 'Войти', signin_path
+          li = link_to 'Зарегистрироваться', signup_path

@@ -13,6 +13,7 @@ header
       gap: 1rem
       margin: 0
       padding: 0.5rem 0
+      align-items: center  // Выравнивание элементов по центру
 
       li
         list-style: none
@@ -31,3 +32,23 @@ header
             background: #404040
             transform: translateY(-2px)
             box-shadow: 0 2px 8px rgba(0,0,0,0.2)
+
+        .user-link  // Специфичный стиль для ссылки профиля
+          background: none
+          border: none
+          padding: 0.5rem
+          display: flex
+          align-items: center
+
+          .gravatar
+            margin-right: 10px
+
+          span
+            color: #fff
+
+          &:hover
+            background: none
+            transform: none
+            box-shadow: none
+            span
+              color: #58a6ff

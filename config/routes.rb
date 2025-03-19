@@ -1,5 +1,6 @@
 =begin
 Rails.application.routes.draw do
+  get "sessions/new"
   get "work/index"
   get "work/choose_theme"
   get "work/display_theme"
@@ -44,6 +45,14 @@ Rails.application.routes.draw do
     get "next_image", to: "api#next_image"
     get "prev_image", to: "api#prev_image"
   end
+
+  # Маршруты для аутентификации
+  get 'signup', to: 'sessions#signup'       # Форма регистрации
+  post 'signup', to: 'sessions#create_user'   # Обработка регистрации
+  get 'signin', to: 'sessions#new'    # Форма входа
+  post 'signin', to: 'sessions#create' # Обработка входа
+  delete 'signout', to: 'sessions#destroy' # Выход
+  get 'profile', to: 'sessions#profile'
 
   # Остальные ресурсы
   resources :values, :themes, :images, :users

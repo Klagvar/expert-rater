@@ -1,0 +1,27 @@
+.container.py-5
+  .row.justify-content-center
+    .col-md-6.col-lg-4
+      h1.mb-4.text-center Регистрация
+      = form_with model: @user, url: signup_path, local: true, html: { class: 'auth-form' } do |form|
+        - if @user.errors.any?
+          .alert.alert-danger.mb-3
+            h4.alert-heading = "#{pluralize(@user.errors.count, "ошибка")} при регистрации:"
+            ul.mb-0
+              - @user.errors.each do |error|
+                li = error.full_message
+        .form-group.mb-3
+          = form.label :name, 'Имя', class: 'form-label'
+          = form.text_field :name, class: 'form-control bg-dark text-light border-secondary'
+        .form-group.mb-3
+          = form.label :email, 'Email', class: 'form-label'
+          = form.email_field :email, class: 'form-control bg-dark text-light border-secondary'
+        .form-group.mb-3
+          = form.label :password, 'Пароль', class: 'form-label'
+          = form.password_field :password, class: 'form-control bg-dark text-light border-secondary'
+        .form-group.mb-3
+          = form.label :password_confirmation, 'Подтверждение пароля', class: 'form-label'
+          = form.password_field :password_confirmation, class: 'form-control bg-dark text-light border-secondary'
+        .actions
+          = form.submit 'Зарегистрироваться', class: 'btn btn-primary w-100'
+      .mt-3.text-center
+        = link_to 'Уже есть аккаунт? Войдите!', signin_path, class: 'text-light'

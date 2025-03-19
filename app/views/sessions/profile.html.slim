@@ -1,0 +1,23 @@
+.container.py-5
+  .row.justify-content-center
+    .col-md-6.col-lg-4
+      h1.mb-4.text-center Мой профиль
+      p.text-success.text-center = notice
+      .profile-card.bg-dark.text-light.p-4.rounded
+        .text-center.mb-3
+          = gravatar_for(@user, size: 100)
+        table.table.table-dark
+          tbody
+            tr
+              td Имя
+              td = @user.name
+            tr
+              td Email
+              td = @user.email
+            tr
+              td Дата регистрации
+              td = l(@user.created_at, format: :long)
+        .actions.text-center.mt-4
+          = link_to 'Выйти', signout_path, method: :delete, class: 'btn btn-danger w-100'
+      .mt-3.text-center
+        = link_to 'На главную', root_path, class: 'text-light'

@@ -1,0 +1,17 @@
+.container.py-5
+  .row.justify-content-center
+    .col-md-6.col-lg-4
+      h1.mb-4.text-center Вход
+      = form_with url: signin_path, local: true, scope: :session, html: { class: 'auth-form' } do |form|
+        - if flash[:alert]
+          .alert.alert-danger.mb-3 = flash[:alert]
+        .form-group.mb-3
+          = form.label :email, 'Email', class: 'form-label'
+          = form.email_field :email, class: 'form-control bg-dark text-light border-secondary'
+        .form-group.mb-3
+          = form.label :password, 'Пароль', class: 'form-label'
+          = form.password_field :password, class: 'form-control bg-dark text-light border-secondary'
+        .actions
+          = form.submit 'Войти', class: 'btn btn-primary w-100'
+      .mt-3.text-center
+        = link_to 'Нет аккаунта? Зарегистрируйтесь!', signup_path, class: 'text-light'
