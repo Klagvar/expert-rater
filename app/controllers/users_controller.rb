@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :require_admin, only: %i[index show edit update destroy]
 
   # GET /users or /users.json
   def index
@@ -22,7 +23,6 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         sign_in @user  # Автоматический вход после успешной регистрации
@@ -51,7 +51,6 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy!
-
     respond_to do |format|
       format.html { redirect_to users_path, status: :see_other, notice: "Пользователь успешно удален." }
       format.json { head :no_content }
@@ -66,6 +65,10 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+  end
+
+  def require_admin
+    redirect_to root_path, alert: 'Доступ запрещён' unless current_user&.admin?
   end
 end

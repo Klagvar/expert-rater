@@ -1,6 +1,6 @@
 class ThemesController < ApplicationController
   before_action :set_theme, only: %i[ show edit update destroy ]
-
+  before_action :require_admin
   # GET /themes or /themes.json
   def index
     @themes = Theme.all
@@ -66,5 +66,9 @@ class ThemesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def theme_params
       params.expect(theme: [ :name, :qty_items ])
+    end
+
+    def require_admin
+      redirect_to root_path, alert: 'Доступ запрещён' unless current_user&.admin?
     end
 end

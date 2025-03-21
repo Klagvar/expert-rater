@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: %i[ show edit update destroy ]
+  before_action :require_admin
 
   # GET /images or /images.json
   def index
@@ -66,5 +67,9 @@ class ImagesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def image_params
       params.expect(image: [ :name, :file, :ave_value, :theme_id ])
+    end
+
+    def require_admin
+      redirect_to root_path, alert: 'Доступ запрещён' unless current_user&.admin?
     end
 end
