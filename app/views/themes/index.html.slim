@@ -1,11 +1,19 @@
-p style="color: green" = notice
-
-h1 Themes
-
-#themes
-  - @themes.each do |theme|
-    == render theme
-    p
-      = link_to "Show this theme", theme
-
-= link_to "New theme", new_theme_path
+.container.my-4
+  p style="color: green" = notice
+  h1 Themes
+  #themes
+    - @themes.each do |theme|
+      div
+        == render theme
+        - if theme.best_image
+          p
+            | Лучшее изображение: 
+            strong = theme.best_image.name
+            |  (Средняя оценка: 
+            = number_with_precision(theme.best_image.ave_value, precision: 1) || 'Нет оценок'
+            | )
+        - else
+          p Нет изображений в теме
+        p
+          = link_to "Show this theme", theme
+  = link_to "New theme", new_theme_path

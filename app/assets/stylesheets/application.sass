@@ -5,19 +5,14 @@
 
 // Base
 html, body
-  // Стили для прокрутки в Firefox
   scrollbar-width: thin !important
   scrollbar-color: #ffffff #2d2d2d !important
-
-  // Стили для прокрутки в Webkit-браузерах (Chrome, Edge, Safari)
   &::-webkit-scrollbar
     width: 12px !important
     height: 12px !important
-
   &::-webkit-scrollbar-track
     background: #2d2d2d !important
     border-radius: 6px !important
-
   &::-webkit-scrollbar-thumb
     background: #ffffff !important
     border-radius: 6px !important
@@ -62,6 +57,49 @@ body
   padding: 0.5rem
   &:hover
     color: #58a6ff
+
+// Card Footer и слайдер
+.card-footer
+  width: 100%  // Растягиваем на всю ширину .card
+  padding: 15px  // Добавляем внутренние отступы
+  text-align: center
+
+.rating-container
+  width: 100%  // Растягиваем контейнер на всю ширину .card-footer
+  padding: 0 15px
+
+.form-range
+  width: 100%  // Слайдер занимает всю ширину .rating-container
+  height: 10px
+  background: #2d2d2d
+  border-radius: 5px
+  &::-webkit-slider-thumb
+    width: 20px
+    height: 20px
+    background: #58a6ff
+    border-radius: 50%
+    cursor: pointer
+    &:hover
+      background: #4682b4
+  &::-moz-range-thumb
+    width: 20px
+    height: 20px
+    background: #58a6ff
+    border-radius: 50%
+    cursor: pointer
+    &:hover
+      background: #4682b4
+  &::-webkit-slider-runnable-track
+    background: #2d2d2d
+    height: 10px
+    border-radius: 5px
+  &::-moz-range-track
+    background: #2d2d2d
+    height: 10px
+    border-radius: 5px
+
+.hidden-initially
+  display: none
 
 // Адаптивность для изображений
 @media (max-width: 992px)

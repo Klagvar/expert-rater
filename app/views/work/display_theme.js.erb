@@ -1,18 +1,24 @@
-// Обновляем все элементы интерфейса
 $('.up-theme').text('<%= @image_data[:theme] %>');
 $('.up').text('<%= @image_data[:name] %>');
 $('.scalable-image').attr('src', '<%= asset_path "pictures/#{@image_data[:file]}" %>');
 
-// Обновляем данные для API-навигации
 $('.card')
   .data('theme-id', '<%= @image_data[:theme_id] %>')
   .data('current-index', '<%= @image_data[:index] %>')
-  .data('total-images', '<%= @image_data[:images_arr_size] %>');
+  .data('total-images', '<%= @image_data[:images_arr_size] %>')
+  .data('image-id', '<%= @image_data[:id] %>'); // Добавляем ID
 
-// Принудительно обновляем ширину карточки
+// Показываем кнопки и футер
+$('.img-left-side').show();
+$('.img-right-side').show();
+$('.card-footer').show();
+
+$('#rating-slider').val('<%= @image_data[:user_score] %>');
+$('#current-rating').text('<%= @image_data[:user_score] %>');
+$('#average-rating').text('<%= @image_data[:ave_value] %>');
+
 $('.card').css('width', 'auto');
 
-// Сброс кэша браузера для изображения (опционально)
 $('.scalable-image').css('transform', 'scale(0.99)').delay(50).queue(function() {
     $(this).css('transform', 'scale(1)').dequeue();
 });

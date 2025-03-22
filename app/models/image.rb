@@ -15,11 +15,10 @@ class Image < ApplicationRecord
               greater_than_or_equal_to: 0,
               less_than_or_equal_to: 100
             }
-  # app/models/image.rb
-  scope :popular, -> { where("ave_value > ?", 70) }
-  delegate :name, to: :theme, prefix: true  # для image.theme_name
 
-  # Scope для выборки изображений по теме
+  scope :popular, -> { where("ave_value > ?", 70) }
+  delegate :name, to: :theme, prefix: true
+
   scope :theme_images, -> (theme_id) {
     select('id', 'name', 'file', 'ave_value')
       .where(theme_id: theme_id)
@@ -38,14 +37,9 @@ class Image < ApplicationRecord
         .first
   end
 
-  # Автоматическое обновление средней оценки
-  after_save :update_ave_value
-
-  private
-
+  # Оставляем как вспомогательный метод
   def update_ave_value
-    avg = values.average(:value)
+    avg = values.average(:value)&.round(1)
     update_column(:ave_value, avg) unless avg.nil?
   end
-
 end

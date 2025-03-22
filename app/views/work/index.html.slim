@@ -3,33 +3,43 @@
     .col-12.text-center
       = render 'button_theme_select'
 
-  .container.my-4
-    .d-flex.justify-content-center
-      .card.bg-dark.text-light(
-        data-theme-id=@image_data[:theme_id]
-        data-current-index=@image_data[:index]
-        data-total-images=@image_data[:images_arr_size]
-      )
-        .card-header.text-center.py-3
-          h2.up-theme.mb-0 = @image_data[:theme]
-        .card-body.p-0
-          .d-flex.align-items-center
-            .me-3
-              button.nav-link.img-left-side[data-action="prev"]
-                i.fas.fa-chevron-left.fa-2x
-
-            .image-container
-              - if @image_data.present?
-                = image_tag "pictures/#{@image_data[:file]}", class: 'scalable-image'
-              - else
-                = image_tag 'pictures/sponge_bob_1.jpg', class: 'scalable-image'
-
-            .ms-3
-              button.nav-link.img-right-side[data-action="next"]
-                i.fas.fa-chevron-right.fa-2x
-
-        .card-footer.text-center.mt-3
-          h3.up = @image_data[:name]
+.container.my-4
+  .d-flex.justify-content-center
+    .card.bg-dark.text-light(
+      data-theme-id=@image_data[:theme_id]
+      data-current-index=@image_data[:index]
+      data-total-images=@image_data[:images_arr_size]
+      data-image-id=@image_data[:id]
+    )
+      .card-header.text-center.py-3
+        h2.up-theme.mb-0 = @image_data[:theme]
+      .card-body.p-0
+        .d-flex.align-items-center
+          .me-3
+            button.nav-link.img-left-side[data-action="prev" class="hidden-initially"]
+              i.fas.fa-chevron-left.fa-2x
+          .image-container
+            - if @image_data.present?
+              = image_tag "pictures/#{@image_data[:file]}", class: 'scalable-image'
+            - else
+              = image_tag 'pictures/placeholder.jpg', class: 'scalable-image'
+          .ms-3
+            button.nav-link.img-right-side[data-action="next" class="hidden-initially"]
+              i.fas.fa-chevron-right.fa-2x
+      .card-footer.text-center.mt-3[class="hidden-initially"]
+        h3.up = @image_data[:name]
+        .rating-container.mt-3
+          label for="rating-slider" Оцените изображение:
+          input#rating-slider[
+            type="range" min="0" max="100"
+            value=@image_data[:user_score]
+            class="form-range"
+          ]
+          p.rating-info
+            | Ваша оценка:
+            span#current-rating = @image_data[:user_score]
+            |  | Средняя оценка:
+            span#average-rating = @image_data[:ave_value]
 
 .modal.fade#themeModal
   .modal-dialog

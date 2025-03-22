@@ -3,7 +3,7 @@ class ThemesController < ApplicationController
   before_action :require_admin
   # GET /themes or /themes.json
   def index
-    @themes = Theme.all
+    @themes = Theme.includes(:images).all
   end
 
   # GET /themes/1 or /themes/1.json

@@ -39,11 +39,13 @@ Rails.application.routes.draw do
   get "work", to: "work#index"
   get "choose_theme", to: "work#choose_theme"
   post "display_theme", to: "work#display_theme"
+  get 'best_images', to: 'best_images#index'
 
   # API Routes
   namespace :api do
     get "next_image", to: "api#next_image"
     get "prev_image", to: "api#prev_image"
+    post 'rate_image', to: 'api#rate_image'
   end
 
   # Маршруты для аутентификации

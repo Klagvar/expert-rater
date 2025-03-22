@@ -1,0 +1,22 @@
+.container.my-4
+  h1.text-center.mb-4 Лучшие изображения по темам
+  .row
+    - @themes.each do |theme|
+      - best_image = theme.best_image
+      .col-md-4.mb-4
+        .card.bg-dark.text-light
+          .card-header
+            h3.mb-0 = theme.name
+          .card-body.p-0
+            - if best_image
+              = image_tag "pictures/#{best_image.file}", class: 'img-fluid', alt: best_image.name
+          .card-footer.text-center
+            - if best_image
+              p.mb-0
+                |
+                strong = best_image.name
+              p.mb-0
+                | Средняя оценка:
+                = number_with_precision(best_image.ave_value, precision: 1) || 'Нет оценок'
+            - else
+              p.mb-0 Нет изображений в теме
