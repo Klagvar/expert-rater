@@ -3,5 +3,5 @@
     = select_tag :theme,
             options_for_select(@themes, params[:theme]),
             class: 'form-control bg-dark text-light',
-            prompt: 'Выберите тему',
+            prompt: t('work.index.select_theme_prompt'),
             onchange: "this.form.requestSubmit()"

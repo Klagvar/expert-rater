@@ -23,5 +23,11 @@ module Experteese
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.fallbacks = true
+    config.i18n.fallbacks = [:en]
+    config.i18n.enforce_available_locales = true
+    config.i18n.default_locale = :ru
   end
 end

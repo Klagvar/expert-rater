@@ -2,19 +2,22 @@ header
   .container
     nav
       ul
-        li = link_to 'Home', root_path
-        li = link_to 'Contacts', main_contacts_path
-        li = link_to 'Help', main_help_path
-        li = link_to 'Лучшее', best_images_path
+        li = link_to t('header.home'), root_path(locale: I18n.locale)
+        li = link_to t('header.contacts'), main_contacts_path(locale: I18n.locale)
+        li = link_to t('header.help'), main_help_path(locale: I18n.locale)
+        li = link_to t('header.best'), best_images_path(locale: I18n.locale)
         - if current_user&.admin?
-          li = link_to 'Users', users_path
-          li = link_to 'Images', images_path
-          li = link_to 'Themes', themes_path
+          li = link_to t('header.users'), users_path(locale: I18n.locale)
+          li = link_to t('header.images'), images_path(locale: I18n.locale)
+          li = link_to t('header.themes'), themes_path(locale: I18n.locale)
         li = link_to 'Rails Docs', 'https://rubyonrails.org', target: '_blank'
         - if signed_in?
           li.user-info
-            = link_to profile_path, class: 'user-link' do
+            = link_to profile_path(locale: I18n.locale), class: 'user-link' do
               = gravatar_for(current_user, size: 43)
         - else
-          li = link_to 'Войти', signin_path
-          li = link_to 'Зарегистрироваться', signup_path
+          li = link_to t('header.sign_in'), signin_path(locale: I18n.locale)
+          li = link_to t('header.sign_up'), signup_path(locale: I18n.locale)
+        li.locale-switcher
+          = link_to toggle_locale_path do
+            = image_tag(flag_image, alt: t('header.language'), title: t('header.switch_language'), class: 'locale-flag')

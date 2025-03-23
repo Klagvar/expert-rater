@@ -5,4 +5,11 @@ module ApplicationHelper
   rescue
     'landscape'
   end
+
+  def flag_image
+    case I18n.locale
+    when :ru then 'Russia.png'
+    when :en then 'United_Kingdom.png'
+    end
+  end
 end

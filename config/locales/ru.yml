@@ -1,0 +1,30 @@
+ru:
+  header:
+    home: "Главная"
+    contacts: "Контакты"
+    help: "Помощь"
+    best: "Лучшее"
+    users: "Пользователи"
+    images: "Изображения"
+    themes: "Темы"
+    sign_in: "Войти"
+    sign_up: "Зарегистрироваться"
+    language: "Русский"
+    switch_language: "Переключить на английский"
+  work:
+    index:
+      select_theme: "Выберите тему"
+      rate_image: "Оцените изображение:"
+      your_rating: "Ваша оценка:"
+      average_rating: "Средняя оценка:"
+      modal_title: "Выберите тему"
+      select_theme_button: "Выбрать тему"
+      select_theme_prompt: "Выберите тему"
+  footer:
+    about_us: "О нас"
+  best_images:
+    index:
+      title: "Лучшие изображения по темам"
+      average_rating: "Средняя оценка: "
+      no_images: "Нет изображений в теме"
+      no_ratings: "Нет оценок"

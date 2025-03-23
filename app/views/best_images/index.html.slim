@@ -1,5 +1,5 @@
 .container.my-4
-  h1.text-center.mb-4 Лучшие изображения по темам
+  h1.text-center.mb-4 = t('best_images.index.title')
   .row
     - @themes.each do |theme|
       - best_image = theme.best_image
@@ -16,7 +16,7 @@
                 |
                 strong = best_image.name
               p.mb-0
-                | Средняя оценка:
-                = number_with_precision(best_image.ave_value, precision: 1) || 'Нет оценок'
+                = t('best_images.index.average_rating')
+                = number_with_precision(best_image.ave_value, precision: 1) || t('best_images.index.no_ratings')
             - else
-              p.mb-0 Нет изображений в теме
+              p.mb-0 = t('best_images.index.no_images')
