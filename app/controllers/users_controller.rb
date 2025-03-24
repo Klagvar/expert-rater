@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    @user.admin = params[:user][:admin] == "true" if current_user&.admin?
     respond_to do |format|
       if @user.save
         sign_in @user  # Автоматический вход после успешной регистрации
@@ -38,12 +39,19 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: "Пользователь успешно обновлен." }
-        format.json { render :show, status: :ok, location: @user }
+      if current_user&.admin?
+        # Принимаем "true", "1", или "on" как истинное значение для admin
+        admin_value = ["true", "1", "on"].include?(params[:user][:admin]&.downcase)
+        if @user.update(user_params.merge(admin: admin_value))
+          format.html { redirect_to @user, notice: "Пользователь успешно обновлен." }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, alert: "Доступ запрещён" }
+        format.json { head :forbidden }
       end
     end
   end
@@ -65,7 +73,7 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   def require_admin

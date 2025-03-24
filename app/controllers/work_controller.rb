@@ -1,6 +1,6 @@
 class WorkController < ApplicationController
   include WorkImage
-
+  skip_forgery_protection only: :choose_theme
   def index
     @selected_theme = "Выберите тему"
     @values_qty = Value.count

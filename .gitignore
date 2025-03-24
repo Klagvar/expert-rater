@@ -34,7 +34,15 @@
 /config/master.key
 /.idea/*
 
-
 /config/database.yml
 /config/secrets.yml
 /config/credentials.yml.enc
+
+# SimpleCov coverage reports
+/coverage/
+
+# Brakeman reports
+/brakeman/*
+
+# RSpec temporary files
+/spec/examples.txt

@@ -3,7 +3,6 @@ module WorkHelper
     @image_data = {
       theme: data[:theme] || theme,
       values_qty: data[:values_qty],
-      theme: theme,
       current_user_id: data[:current_user_id],
       theme_id: data[:theme_id],
       index: data[:index],

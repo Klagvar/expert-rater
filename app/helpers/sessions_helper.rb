@@ -7,6 +7,7 @@ module SessionsHelper
     cookies.permanent[:remember_token] = remember_token
     user.update_attribute(:remember_token, User.encrypt(remember_token))
     self.current_user = user
+    session[:user_id] = user.id
   end
 
   # Установка текущего пользователя
@@ -30,6 +31,7 @@ module SessionsHelper
     unless current_user.blank?
       current_user.update_attribute(:remember_token, User.encrypt(User.new_remember_token))
       cookies.delete(:remember_token)
+      session[:user_id] = nil
       self.current_user = nil
     end
   end
